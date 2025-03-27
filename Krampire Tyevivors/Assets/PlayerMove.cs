@@ -20,5 +20,7 @@ public class PlayerMove : MonoBehaviour
     {
         movementVector.x = Input.GetAxis("Horizontal");
         movementVector.y = Input.GetAxis("Vertical");
+
+        rgbd2d.velocity = movementVector;
     }
 }
