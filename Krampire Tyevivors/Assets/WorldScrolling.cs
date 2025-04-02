@@ -5,7 +5,9 @@ using UnityEngine;
 public class WorldScrolling : MonoBehaviour
 {
     [SerializeField] Transform playerTransform;
-    Vector2Int currentTilePosition;
+    Vector2Int currentTilePosition = new Vector2Int(0,0);
+    [SerializeField] Vector2Int playerTilePosition;
+    [SerializeField] float tileSize = 20f; 
     GameObject[,] terrainTiles;
 
     [SerializeField] int terrainTileHorizontalCount;
@@ -19,11 +21,13 @@ public class WorldScrolling : MonoBehaviour
 
     private void Update()
     {
-        Vector2Int playerTilePosition = new Vector2Int(Mathf.FloorToInt(playerTransform.position.x), Mathf.FloorToInt(playerTransform.position.y));
-        if (playerTilePosition != currentTilePosition)
+        playerTilePosition.x = (int)(playerTransform.position.x / tileSize);
+        playerTilePosition.y = (int)(playerTransform.position.y / tileSize);
+
+        if (currentTilePosition != playerTilePosition)
         {
             currentTilePosition = playerTilePosition;
-            UpdateTerrainTiles();
+            
         }
     }
 
